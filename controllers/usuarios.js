@@ -72,16 +72,9 @@ const usuariosPatch = (req, res = response) => {
 const usuariosDelete = async(req, res = response) => {
 
   const {id} = req.params;
-
-  //Borrar registro fisico
-  // const usuario = await Usuario.findByIdAndDelete(id);
-
-  //Cambiando estado de usuario para eliminar registrado y no perder integridad de registros
   const usuario = await Usuario.findByIdAndUpdate(id, {estado: false}, {new: true});
 
-  res.json({
-    usuario
-  });
+  res.json(usuario);
 }
 
 module.exports = {
